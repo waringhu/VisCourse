@@ -10,6 +10,11 @@ body {
 
 #bar {
     height: 100%;
+    width: 49%;
+}
+#scatter {
+    height: 100%;
+    width: 49%;
 }
 
 .axis path,

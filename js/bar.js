@@ -65,3 +65,31 @@ var rects = svg.selectAll(".myRect")
     .attr("height", function(d, i) {
         return height - padding.bottom - yScale(d) - padding.top;
     })
+    .attr("fill", "white")
+    .transition() // 开启动画
+    .duration(1000) // 动画持续时间
+    .ease("elastic") // 动画变化方式 --- linear, circle
+    .delay(function(d, i) {
+        return 100 * i;
+    })
+    .attr("fill", "steelblue")
+
+svg.selectAll("rect")
+    .on("mouseover", function(d, i) {
+        d3.select(this)
+            .transition()
+            .duration(500)
+            .attr("fill", "yellow")
+    })
+    .on("mouseout", function(d, i) {
+        d3.select(this)
+            .transition()
+            .duration(500)
+            .attr("fill", "steelblue")
+    })
+    .on("click", function(d, i) {
+        d3.select(this)
+            .transition()
+            .duration(500)
+            .attr("fill", "red")
+    })
