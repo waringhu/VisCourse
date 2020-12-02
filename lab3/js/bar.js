@@ -91,5 +91,7 @@ svg.selectAll("rect")
         d3.select(this)
             .transition()
             .duration(500)
-            .attr("fill", "red")
+            .attr("fill", "red");
+        // console.log(this.id);
+        draw(this.id);
     })
