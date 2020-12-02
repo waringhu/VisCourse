@@ -1,0 +1,47 @@
+<!DOCTYPE html style="height: 100%; width: 100%">
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Vis 实验二</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script src='echarts.min.js'></script>
+	<script src='jquery-3.5.1.js'></script>
+	<script src='bootstrap.min.js'></script>
+	<script src='getData.js'></script>
+	<script src='drawBar.js'></script>
+	<script src='PostWay.js'></script>
+	<script src='xiaoshouliang.js'></script>
+	<link href="./bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+	<div id="saleCom" class="margin-dott" style="height: 49%; width: 49%;">
+
+	</div>
+	<div id="compare" class="margin-dott" style="height: 49%; width: 49%;">
+
+	</div>
+	<div id="bar" class="margin-dott" style="height: 48.6%; width: 98.55%;">
+
+	</div>
+	<script>
+		main()
+		window.onresize = function() {
+			this.Mychart.resize()
+			this.PostWayChart.resize()
+			this.SaleCoPNumCart.resize()
+		}
+	</script>
+
+
+</body>
+<style>
+	.margin-dott {
+		float: left;
+		margin: 0.3% 0.3% 0.3% 0.3%;
+		border: #1B6D85 dotted;
+	}
+</style>
+
+</html>
