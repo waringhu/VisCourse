@@ -6,8 +6,6 @@ var svg = d3.select("#bar")
     .attr("width", width)
     .attr("height", height);
 
-console.log(height);
-
 var padding = {left: 60, right: 60, top: 60, bottom: 60};
 
 var dataset= [11, 22, 33, 44, 55, 66, 77];
@@ -46,3 +44,24 @@ svg.append("g")
     .attr("class", "axis")
     .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
     .call(yAxis);
+
+var rects = svg.selectAll(".myRect")
+    .data(dataset).enter()
+    .append("rect")
+    .attr("class", "myRect")
+    .attr("id", function(d, i) {
+        return xdata[i];
+    })
+    .attr("transform", "translate(" + padding.left + "," + padding.top + ")")
+    .attr("x", function(d, i) {
+        return pScale(i) + 2;
+    })
+    .attr("y", function(d, i) {
+        return yScale(d);
+    })
+    .attr("width", function(d, i) {
+        return pScale.rangeBand() - 2;
+    })
+    .attr("height", function(d, i) {
+        return height - padding.bottom - yScale(d) - padding.top;
+    })
