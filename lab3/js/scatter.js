@@ -1,4 +1,6 @@
 function draw(date) { 
+    $("#scatter").empty();
+
     var width = $("#scatter").width();
     var height = $("#scatter").height() * 0.8;
     var padding = 60;
@@ -53,6 +55,48 @@ function draw(date) {
             .attr("class", "axis")
             .attr("transform", "translate(" + padding + ")")
             .call(yAxis);
+
+        // var rects = svg.selectAll("circle")
+        svg.selectAll("circle")
+            .data(dataset).enter()
+            .append("circle")
+            .attr("cx", function(d) {
+                return d[0];
+            })
+            .attr("cy", function(d) {
+                return d[1];
+            })
+            .attr("r", function(d) {
+                return rScale(d[1]);
+            })
+            .attr("fill", "white")
+            .transition() // 开启动画
+            .duration(1000) // 动画持续时间
+            .ease("elastic") // 动画变化方式 --- linear, circle
+            .delay(function(d, i) {
+                return 100 * i;
+            })
+            .attr("fill", "steelblue")
+
+        svg.selectAll("circle")
+            .on("mouseover", function(d, i) {
+                d3.select(this)
+                    .transition()
+                    .duration(500)
+                    .attr("fill", "yellow")
+            })
+            .on("mouseout", function(d, i) {
+                d3.select(this)
+                    .transition()
+                    .duration(500)
+                    .attr("fill", "steelblue")
+            })
+            .on("click", function(d, i) {
+                d3.select(this)
+                    .transition()
+                    .duration(500)
+                    .attr("fill", "red");
+            })
     })
 }
 
