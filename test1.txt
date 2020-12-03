@@ -1,0 +1,34 @@
+#coding=utf-8
+
+
+with open("score.txt","r",encoding="utf-8") as f:
+    dd = f.read()
+
+#print(dd)
+
+ddlist = dd.split("\n")
+total=[]
+
+title = ddlist[0]+",总评成绩"
+print(title)
+with open("score_total.txt","a+",encoding="utf-8") as f:
+    f.write(title)
+    f.write("\n")
+
+for d in ddlist[1:]:
+
+    dlist = d.split(",")
+    tscore = int(dlist[1])*0.4+int(dlist[2])*0.6
+    ttscore=int(round(tscore))
+    dlist.append(str(ttscore))
+    total.append(dlist)
+
+
+tttt = sorted(total,key=lambda x:x[3],reverse=True)
+#print(tttt)
+
+for dlist in tttt:
+    print(",".join(dlist))
+    with open("score_total.txt", "a+", encoding="utf-8") as f:
+        f.write(",".join(dlist))
+        f.write("\n")

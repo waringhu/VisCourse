@@ -1,0 +1,65 @@
+# coding=utf-8
+
+with open("hamlet.txt","r",encoding="utf-8") as f:
+    dd = f.read()
+
+#print(dd)
+
+# 去掉标点
+
+import string
+
+aa = dd.translate(str.maketrans('', '', string.punctuation))
+
+#print(aa)
+
+aalist = aa.split("\n")
+
+WordDict=[]
+
+for a in aalist:
+    ii = a.split(" ")
+    for i in ii:
+        if i :
+            if len(i)>=3:
+                WordDict.append(i)
+
+#print(WordDict)
+
+
+# 随机挑十个单次
+
+import random
+
+TrueWords = random.sample(WordDict, 10)
+
+GuessWords =[]
+
+for tt in TrueWords:
+
+    listtt = list(tt)
+    #print(listtt)
+    random.shuffle(listtt)
+
+    GuessWords.append("".join(listtt))
+
+    pass
+
+#print(TrueWords)
+#print(GuessWords)
+
+score=0
+print("成功创建词库，游戏开始")
+for i in range(len(GuessWords)):
+    print("第%d题，乱序词为：%s"%(i+1,GuessWords[i]))
+    dd = input("你猜的词是：")
+    if dd==TrueWords[i]:
+        print("猜中了")
+        score=score+1
+    elif not dd:
+        print("你的得分是：%d"%score)
+        break
+    else:
+        print("猜错了，正确单词是：%s"%TrueWords[i])
+
+print("游戏结束")
